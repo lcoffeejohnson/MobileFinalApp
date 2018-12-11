@@ -8,7 +8,7 @@
     tools:context=".CalendarActivity">
 
     <Button
-        android:id="@+id/btnMonth"
+        android:id="@+id/btnMonthMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnWeek"
+        android:id="@+id/btnWeekMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -34,13 +34,13 @@
         android:textColor="#28536b"
         android:textAllCaps="false"
         android:text="Week"
-        app:layout_constraintEnd_toStartOf="@+id/btnDay"
+        app:layout_constraintEnd_toStartOf="@+id/btnDayMonth"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnMonth"
+        app:layout_constraintStart_toEndOf="@+id/btnMonthMonth"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnDay"
+        android:id="@+id/btnDayMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

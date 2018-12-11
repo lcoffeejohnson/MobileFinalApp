@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             // show the MAIN SCREEN
             startActivity(
                     Intent(this@LoginActivity,
-                            MainActivity::class.java)
+                            CalendarActivity::class.java)
             )
         }.addOnFailureListener{
             Toast.makeText(this@LoginActivity,
