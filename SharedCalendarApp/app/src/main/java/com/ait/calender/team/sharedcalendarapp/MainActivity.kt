@@ -3,9 +3,11 @@ package com.ait.calender.team.sharedcalendarapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.widget.Toast
 import com.ait.calender.team.sharedcalendarapp.adapter.CalendarAdapter
 import com.ait.calender.team.sharedcalendarapp.touch.EventTouchHelperCallback
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var calendarAdapter: CalendarAdapter
     private var editIndex: Int = 0
+
+    private lateinit var calendarListener: ListenerRegistration
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,35 @@ class MainActivity : AppCompatActivity() {
                 touchHelper.attachToRecyclerView(recyclerCalendar)
             }
         }.start()
+
+
+        val db = FirebaseFirestore.getInstance()
+        val calendarCollection = db.collection("calendars")
+
+        calendarListener = calendarCollection.addSnapshotListener(object: EventListener<QuerySnapshot> {
+            override fun onEvent(querySnapshot: QuerySnapshot?, p1: FirebaseFirestoreException?) {
+                if (p1 != null) {
+                    Toast.makeText(this@MainActivity, "Error: ${p1.message}",
+                            Toast.LENGTH_LONG).show()
+                    return
+                }
+
+                for (docChange in querySnapshot!!.getDocumentChanges()) {
+                    when (docChange.type) {
+                        DocumentChange.Type.ADDED -> {
+                            val calendar = docChange.document.toObject(Calendar::class.java)
+                            calendarAdapter.addCalendar(calendar, docChange.document.id)
+                        }
+
+                        DocumentChange.Type.REMOVED -> {
+                            calendarAdapter.removeCalendarByKey(docChange.document.id)
+
+                        }
+                    }
+                }
+
+            }
+        })
     }
 
 
