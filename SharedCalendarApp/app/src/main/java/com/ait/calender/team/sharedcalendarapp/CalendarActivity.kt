@@ -32,5 +32,13 @@ class CalendarActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         cvMain.setDate(System.currentTimeMillis(),false,true)
+
+        fabAddEvent.setOnClickListener {
+            showAddEventDialog()
+        }
+    }
+
+    private fun showAddEventDialog() {
+        AddEventDialog().show(supportFragmentManager, "TAG_CREATE")
     }
 }

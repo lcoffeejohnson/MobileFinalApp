@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etEventTitle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tvDate"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="28dp"-->
+        <!--android:layout_marginLeft="28dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="@string/date"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/tvTime"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/etEventTitle"-->
+        <!--app:layout_constraintVertical_bias="0.283" />-->
+
+    <DatePicker
+        android:id="@+id/dpEventDate"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+        android:theme="@style/DatePickerDialogTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEventTitle" />
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/tvTime"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="28dp"-->
+        <!--android:layout_marginLeft="28dp"-->
+        <!--android:text="@string/time"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/colon"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+    <Spinner
+        android:id="@+id/hourSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="@id/dpEventDate"
+        app:layout_constraintTop_toBottomOf="@+id/dpEventDate"
+        app:layout_constraintRight_toLeftOf="@id/colon"/>
+
+    <TextView
+        android:id="@+id/colon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon"
+        app:layout_constraintEnd_toStartOf="@+id/minuteSelect"
+        app:layout_constraintStart_toEndOf="@+id/hourSelect"
+        app:layout_constraintTop_toBottomOf="@+id/dpEventDate" />
+
+    <Spinner
+        android:id="@+id/minuteSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintTop_toTopOf="@id/colon"
+        app:layout_constraintRight_toLeftOf="@id/cbAllDay"
+        app:layout_constraintLeft_toRightOf="@id/colon"/>
+
+    <CheckBox
+        android:id="@+id/cbAllDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/all_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dpEventDate" />
+
+    <EditText
+        android:id="@+id/etEventDesc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hourSelect" />
+
+
+
+</android.support.constraint.ConstraintLayout>
