@@ -1,17 +1,14 @@
 package com.ait.calender.team.sharedcalendarapp
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.Menu
-import android.view.MenuItem
 import com.ait.calender.team.sharedcalendarapp.adapter.CalendarAdapter
+import com.ait.calender.team.sharedcalendarapp.touch.EventTouchHelperCallback
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), AddCalendarDialog.CalendarHandler {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         val KEY_ITEM_TO_EDIT = "KEY_ITEM_TO_EDIT"
@@ -28,19 +25,16 @@ class MainActivity : AppCompatActivity(), AddCalendarDialog.CalendarHandler {
 
         initRecyclerView()
 
-        btnTempCalendarList.setOnClickListener {
-            startActivity(
-                    Intent(this@MainActivity,
-                            CalendarActivity::class.java)
-            )
+        fabAddCalendar.setOnClickListener {
+            showAddCalendarDialog()
         }
     }
 
     private fun initRecyclerView() {
         Thread {
-            val calendars = null // get calendars from Firebase
+            val userId = FirebaseAuth.getInstance().currentUser!!.uid
             runOnUiThread {
-                calendarAdapter = CalendarAdapter(this@MainActivity, calendars)
+                calendarAdapter = CalendarAdapter(this@MainActivity, userId)
                 recyclerCalendar.adapter = calendarAdapter
                 val callback = EventTouchHelperCallback(calendarAdapter)
                 val touchHelper = ItemTouchHelper(callback)
@@ -51,26 +45,6 @@ class MainActivity : AppCompatActivity(), AddCalendarDialog.CalendarHandler {
 
 
     private fun showAddCalendarDialog() {
-        AddCalendarDialog().show(supportFragmentManager, getString(R.string.tag_create))
+        AddCalendarDialog().show(supportFragmentManager, "TAG_CREATE")
     }
-
-
-
-    override fun calenderCreated(item: Calendar) {
-
-        Thread {
-            val id = AppDatabase.getInstance(
-                    this@MaingActivity).productDao().insertProduct(item)
-
-            item.calendarId = id
-
-            runOnUiThread {
-                calendarAdapter.addProduct(item)
-            }
-        }.start()
-
-    }
-
-
-
 }

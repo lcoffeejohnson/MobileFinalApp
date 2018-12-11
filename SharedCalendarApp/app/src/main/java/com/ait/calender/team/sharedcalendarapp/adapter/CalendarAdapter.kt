@@ -11,10 +11,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.ait.calender.team.sharedcalendarapp.Calendar
+import com.ait.calender.team.sharedcalendarapp.touch.EventTouchHelperAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.row_calendar.view.*
 
-class CalendarAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
+class CalendarAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<CalendarAdapter.ViewHolder>(), EventTouchHelperAdapter {
+
 
     private var calendarList = mutableListOf<Calendar>()
     private var calendarKeys = mutableListOf<String>()
@@ -89,6 +91,12 @@ class CalendarAdapter(var context: Context, var uid:String) : RecyclerView.Adapt
         val tvCalendar: TextView = itemView.tvCalendar
         val btnDelete: Button = itemView.btnDelete
 
+    }
+
+    override fun onDismissed(position: Int) {
+    }
+
+    override fun onItemMoved(fromPosition: Int, toPosition: Int) {
     }
 
 }
