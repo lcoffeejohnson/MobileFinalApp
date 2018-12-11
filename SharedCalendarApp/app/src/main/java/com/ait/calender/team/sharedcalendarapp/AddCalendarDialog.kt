@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.dialog_new_calendar.view.*
 import kotlinx.android.synthetic.main.dialog_new_event.*
 import kotlinx.android.synthetic.main.dialog_new_event.view.*
 

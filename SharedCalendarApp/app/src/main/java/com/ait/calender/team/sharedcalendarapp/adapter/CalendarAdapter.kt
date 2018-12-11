@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.ait.calender.team.sharedcalendarapp.Calendar
+import com.ait.calender.team.sharedcalendarapp.R
 import com.ait.calender.team.sharedcalendarapp.touch.EventTouchHelperAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.row_calendar.view.*
@@ -41,7 +42,7 @@ class CalendarAdapter(var context: Context, var uid:String) : RecyclerView.Adapt
         if (calendar.uid == uid) {
             holder.btnDelete.visibility = View.VISIBLE
             holder.btnDelete.setOnClickListener {
-                removePost(holder.adapterPosition)
+                removeCalendar(holder.adapterPosition)
             }
         } else {
             holder.btnDelete.visibility = View.GONE
