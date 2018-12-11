@@ -25,11 +25,20 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         for (i in 0..23) {
-            hours[i] = i.toString()
+            if (i < 10) {
+                hours[i] = "0" + i.toString()
+            } else {
+                hours[i] = i.toString()
+            }
+
         }
 
         for (i in 0..59) {
-            minutes[i] = i.toString()
+            if (i < 10) {
+                minutes[i] = "0" + i.toString()
+            } else {
+                minutes[i] = i.toString()
+            }
         }
 
         val builder = AlertDialog.Builder(requireContext())
@@ -79,6 +88,19 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
     }
 
+    override fun onResume() {
+        super.onResume()
+        val positiveButton = (dialog as AlertDialog).getButton(Dialog.BUTTON_POSITIVE)
+        positiveButton.setOnClickListener {
+            when {
+                eventTitle.text.isEmpty() -> eventTitle.error = "Event must have a title"
+                else -> {
+                    uploadEvent()
+                }
+            }
+        }
+    }
+
     private fun uploadEvent() {
         val event = Event(
                 FirebaseAuth.getInstance().currentUser!!.uid,
@@ -93,15 +115,8 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
                 eventAllDay.isChecked
         )
 
-//        val eventCollections = FirebaseFirestore.getInstance().collection("events")
-//
-//        eventCollections.add(event)
-//                .addOnSuccessListener {
-//                    Toast.makeText(activity, "Event added",
-//                            Toast.LENGTH_LONG).show()
-//                }.addOnFailureListener{
-//                    Toast.makeText(activity, "Error ${it.message}",
-//                            Toast.LENGTH_LONG).show()
-//                }
+        val eventCollections = FirebaseFirestore.getInstance().collection("events")
+
+        eventCollections.add(event)
     }
 }
