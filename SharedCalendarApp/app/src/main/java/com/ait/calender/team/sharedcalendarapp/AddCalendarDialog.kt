@@ -35,7 +35,7 @@ class AddCalendarDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
 
 
         builder.setPositiveButton("Add") { dialog, which ->
-            uploadEvent()
+            //uploadEvent()
         }
 
         builder.setNegativeButton("Cancel") { dialog, which ->
@@ -59,6 +59,7 @@ class AddCalendarDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
                 calendarTitle.text.isEmpty() -> calendarTitle.error = "Calendar must have a title"
                 else -> {
                     uploadEvent()
+                    dialog.dismiss()
                 }
             }
         }
@@ -74,5 +75,13 @@ class AddCalendarDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
         val calendarCollections = FirebaseFirestore.getInstance().collection("calendars")
 
         calendarCollections.add(calendar)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Post saved",
+                            Toast.LENGTH_LONG).show()
+                }.addOnFailureListener{
+                    Toast.makeText(context, "Error ${it.message}",
+                            Toast.LENGTH_LONG).show()
+                }
+
     }
 }
