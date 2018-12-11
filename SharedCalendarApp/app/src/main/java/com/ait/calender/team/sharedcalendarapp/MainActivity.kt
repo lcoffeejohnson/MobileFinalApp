@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), AddCalendarDialog.CalendarHandler {
 
 
 
-    /* override fun calenderCreated(item: Calendar) {
+    override fun calenderCreated(item: Calendar) {
 
         Thread {
             val id = AppDatabase.getInstance(
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), AddCalendarDialog.CalendarHandler {
             }
         }.start()
 
-    } */
+    }
 
 
 

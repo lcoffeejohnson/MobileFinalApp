@@ -54,7 +54,7 @@ class CalendarAdapter(var context: Context, var uid:String) : RecyclerView.Adapt
         notifyDataSetChanged()
     }
 
-    private fun removePost(index: Int) {
+    private fun removeCalendar(index: Int) {
         FirebaseFirestore.getInstance().collection("calendars").document(
                 calendarKeys[index]
         ).delete()
