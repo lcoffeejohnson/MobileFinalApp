@@ -96,6 +96,7 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
                 eventTitle.text.isEmpty() -> eventTitle.error = "Event must have a title"
                 else -> {
                     uploadEvent()
+                    dialog.dismiss()
                 }
             }
         }
@@ -117,6 +118,12 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
 
         val eventCollections = FirebaseFirestore.getInstance().collection("events")
 
-        eventCollections.add(event)
+        eventCollections.add(event).addOnSuccessListener {
+            Toast.makeText(context, "Event saved",
+                    Toast.LENGTH_LONG).show()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error ${it.message}",
+                    Toast.LENGTH_LONG).show()
+        }
     }
 }
