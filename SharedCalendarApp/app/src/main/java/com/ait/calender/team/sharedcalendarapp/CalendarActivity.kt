@@ -17,11 +17,6 @@ class CalendarActivity : AppCompatActivity() {
             showAddEventDialog()
         }
 
-        btnWeekMonth.setOnClickListener {
-            startActivity(
-                    Intent(this@CalendarActivity,
-                    WeekActivity::class.java))
-        }
     }
 
     private fun showAddEventDialog() {
