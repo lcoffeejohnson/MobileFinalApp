@@ -42,7 +42,7 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
         }
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Add New Event")
+        builder.setTitle(getString(R.string.add_new_event))
 
         val rootView = requireActivity().layoutInflater.inflate(
                 R.layout.dialog_new_event, null
@@ -65,11 +65,11 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
         minutesSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         eventMinute.adapter = minutesSpinner
 
-        builder.setPositiveButton("Add") {
+        builder.setPositiveButton(getString(R.string.add)) {
             dialog, which -> uploadEvent()
         }
 
-        builder.setNegativeButton("Cancel") {
+        builder.setNegativeButton(getString(R.string.cancel)) {
             dialog, which ->
         }
 
@@ -93,7 +93,7 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
         val positiveButton = (dialog as AlertDialog).getButton(Dialog.BUTTON_POSITIVE)
         positiveButton.setOnClickListener {
             when {
-                eventTitle.text.isEmpty() -> eventTitle.error = "Event must have a title"
+                eventTitle.text.isEmpty() -> eventTitle.error = getString(R.string.event_add_error)
                 else -> {
                     uploadEvent()
                     dialog.dismiss()
@@ -118,12 +118,6 @@ class AddEventDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
 
         val eventCollections = FirebaseFirestore.getInstance().collection("events")
 
-        eventCollections.add(event).addOnSuccessListener {
-            Toast.makeText(context, "Event saved",
-                    Toast.LENGTH_LONG).show()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error ${it.message}",
-                    Toast.LENGTH_LONG).show()
-        }
+        eventCollections.add(event)
     }
 }

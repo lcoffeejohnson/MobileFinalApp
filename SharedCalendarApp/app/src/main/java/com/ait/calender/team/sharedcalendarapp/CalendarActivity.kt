@@ -20,11 +20,6 @@ class CalendarActivity : AppCompatActivity() {
             showAddEventDialog()
         }
 
-//        btnWeekMonth.setOnClickListener {
-//            startActivity(
-//                    Intent(this@CalendarActivity,
-//                    WeekActivity::class.java))
-//        }
 
         cvMain.setOnDateChangedListener { cvMain, date, selected ->
             var intentStart = Intent()

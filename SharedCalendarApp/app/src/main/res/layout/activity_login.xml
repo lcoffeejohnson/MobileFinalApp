@@ -29,8 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:text="janedoe@website.hu"
-                android:hint="email" />
+                android:text="@string/janedoe_email"
+                android:hint="@string/email" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:text="123654"
-                android:hint="Password"/>
+                android:text="@string/password_123654"
+                android:hint="@string/password"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -55,7 +55,7 @@
             android:layout_marginBottom="12dp"
             android:padding="12dp"
             android:onClick="loginClick"
-            android:text="Login"/>
+            android:text="@string/login"/>
 
         <Button
             android:id="@+id/btnRegister"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:onClick="registerClick"
-            android:text="Register"/>
+            android:text="@string/register"/>
 
     </LinearLayout>
 </ScrollView>

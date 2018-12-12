@@ -39,8 +39,8 @@ class EventAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
         holder.tvAuthor.text = event.author
         holder.tvTitle.text = event.title
         holder.tvDescription.text = event.description
-        holder.tvTime.text = "Time: " + event.hour + ":" + event.minute
-        holder.tvDescription.text = "Date: " + event.day + "/" + event.month + "/" + event.year
+        holder.tvTime.text = context.getString(R.string.time) + event.hour + ":" + event.minute
+        holder.tvDescription.text = context.getString(R.string.date) + event.day + "/" + event.month + "/" + event.year
 
         if (event.uid == uid) {
             holder.btnDelete.visibility = View.VISIBLE
@@ -64,21 +64,12 @@ class EventAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
         val event = FirebaseFirestore.getInstance().collection("events")
                 .document(eventKeys[index])
 
-
-        event.delete().addOnSuccessListener {
-                    Toast.makeText(context, "Event deleted: ${eventKeys[index]}",
-                            Toast.LENGTH_LONG).show()
-                }.addOnFailureListener{
-                    Toast.makeText(context, "Error ${it.message}",
-                            Toast.LENGTH_LONG).show()
-                }
-
+        event.delete()
 
         eventsList.removeAt(index)
         eventKeys.removeAt(index)
         notifyItemRemoved(index)
     }
-
 
     fun removeEventByKey(key: String) {
         val index = eventKeys.indexOf(key)

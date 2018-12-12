@@ -10,7 +10,7 @@
         android:id="@+id/etEventTitle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
         android:id="@+id/colon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=":"
+        android:text="@string/colon"
         app:layout_constraintEnd_toStartOf="@+id/minuteSelect"
         app:layout_constraintStart_toEndOf="@+id/hourSelect"
         app:layout_constraintTop_toBottomOf="@+id/dpEventDate" />
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="All Day"
+        android:text="@string/all_day"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dpEventDate" />
 
@@ -95,7 +95,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Description"
+        android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hourSelect" />

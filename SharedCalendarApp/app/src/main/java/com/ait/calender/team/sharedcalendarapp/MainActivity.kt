@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         eventListener = postsCollection.addSnapshotListener(object: EventListener<QuerySnapshot> {
             override fun onEvent(querySnapshot: QuerySnapshot?, p1: FirebaseFirestoreException?) {
                 if (p1 != null) {
-                    Toast.makeText(this@MainActivity, "Error: ${p1.message}",
+                    Toast.makeText(this@MainActivity, (getString(R.string.error) + p1.message),
                             Toast.LENGTH_LONG).show()
                     return
                 }
