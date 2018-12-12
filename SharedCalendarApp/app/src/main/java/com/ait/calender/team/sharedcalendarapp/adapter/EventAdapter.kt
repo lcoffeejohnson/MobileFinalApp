@@ -10,13 +10,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.ait.calender.team.sharedcalendarapp.Event
 import com.ait.calender.team.sharedcalendarapp.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.row_event.view.*
 
 
-class PostsAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+class EventAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     private var eventsList = mutableListOf<Event>()
     private var eventKeys = mutableListOf<String>()
@@ -44,7 +45,7 @@ class PostsAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
         if (event.uid == uid) {
             holder.btnDelete.visibility = View.VISIBLE
             holder.btnDelete.setOnClickListener {
-                removePost(holder.adapterPosition)
+                removeEvent(holder.adapterPosition)
             }
         } else {
             holder.btnDelete.visibility = View.GONE
@@ -59,10 +60,19 @@ class PostsAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
         notifyDataSetChanged()
     }
 
-    private fun removePost(index: Int) {
-        FirebaseFirestore.getInstance().collection("posts").document(
-                eventKeys[index]
-        ).delete()
+    private fun removeEvent(index: Int) {
+        val event = FirebaseFirestore.getInstance().collection("events")
+                .document(eventKeys[index])
+
+
+        event.delete().addOnSuccessListener {
+                    Toast.makeText(context, "Event deleted: ${eventKeys[index]}",
+                            Toast.LENGTH_LONG).show()
+                }.addOnFailureListener{
+                    Toast.makeText(context, "Error ${it.message}",
+                            Toast.LENGTH_LONG).show()
+                }
+
 
         eventsList.removeAt(index)
         eventKeys.removeAt(index)
@@ -70,7 +80,7 @@ class PostsAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
     }
 
 
-    fun removePostByKey(key: String) {
+    fun removeEventByKey(key: String) {
         val index = eventKeys.indexOf(key)
         if (index != -1) {
             eventsList.removeAt(index)
