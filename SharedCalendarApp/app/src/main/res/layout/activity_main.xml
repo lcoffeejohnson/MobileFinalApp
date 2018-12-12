@@ -7,12 +7,12 @@
     tools:context=".MainActivity">
 
 <android.support.v7.widget.RecyclerView
-    android:id="@+id/recyclerCalendar"
-    android:layout_width="wrap_content"
+    android:id="@+id/recyclerEvents"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddCalendar"
+        android:id="@+id/fabAddEventOnDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

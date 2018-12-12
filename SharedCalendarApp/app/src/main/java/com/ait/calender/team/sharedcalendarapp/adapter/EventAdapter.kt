@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.row_event.view.*
 
 
-class PostsAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+class EventAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     private var eventsList = mutableListOf<Event>()
     private var eventKeys = mutableListOf<String>()
