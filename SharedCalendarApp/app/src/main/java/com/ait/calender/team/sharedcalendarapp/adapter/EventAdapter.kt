@@ -39,8 +39,12 @@ class EventAdapter(var context: Context, var uid:String) : RecyclerView.Adapter<
         holder.tvAuthor.text = event.author
         holder.tvTitle.text = event.title
         holder.tvDescription.text = event.description
-        holder.tvTime.text = context.getString(R.string.time) + event.hour + ":" + event.minute
-        holder.tvDescription.text = context.getString(R.string.date) + event.day + "/" + event.month + "/" + event.year
+        if (event.allDay) {
+            holder.tvTime.text = context.getString(R.string.all_day_text)
+        } else {
+            holder.tvTime.text = context.getString(R.string.time) + event.hour + ":" + event.minute
+        }
+        holder.tvDate.text = context.getString(R.string.date) + event.day + "/" + event.month + "/" + event.year
 
         if (event.uid == uid) {
             holder.btnDelete.visibility = View.VISIBLE

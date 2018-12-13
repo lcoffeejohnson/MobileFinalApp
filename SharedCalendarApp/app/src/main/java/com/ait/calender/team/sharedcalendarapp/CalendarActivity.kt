@@ -16,11 +16,6 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
 
-        fabAddEventFromMonth.setOnClickListener {
-            showAddEventDialog()
-        }
-
-
         cvMain.setOnDateChangedListener { cvMain, date, selected ->
             var intentStart = Intent()
             intentStart.setClass(this@CalendarActivity, MainActivity::class.java)

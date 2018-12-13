@@ -19,9 +19,6 @@
     <string name="et_email_error">This field can not be empty</string>
     <string name="et_password_error">This field can not be empty</string>
     <string name="error">Error:</string>
-    <string name="month">Month</string>
-    <string name="week">Week</string>
-    <string name="day">Day</string>
     <string name="email">email</string>
     <string name="janedoe_email">janedoe@website.hu</string>
     <string name="password_123654">123654</string>
@@ -34,8 +31,8 @@
     <string name="colon">:</string>
     <string name="calendar_title">Calendar Title</string>
     <string name="author">Author</string>
-    <string name="description">Description</string>
     <string name="tv_time">Time</string>
     <string name="tv_date">Date</string>
     <string name="btn_delete">Delete</string>
+    <string name="all_day_text">All day</string>
 </resources>
